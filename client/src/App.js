@@ -7,10 +7,10 @@ import TaskDescription from './components/TaskDescription';
 export default function App() {
 
   const [taskList, setTaskList] = React.useState([])
-  console.log(taskList)
+  const [ranOnce, setRanOnce] = React.useState(false)
 
   return <Routes>
-    <Route path = '/' element = {<Home taskList = {taskList} setTaskList = {setTaskList} />} />
-    <Route path = '/:id' element = {<TaskDescription taskList = {taskList} />} />
+    <Route path = '/' element = {<Home setRanOnce = {setRanOnce} taskList = {taskList} setTaskList = {setTaskList} />} />
+    <Route path = '/:id' element = {<TaskDescription setTaskList = {setTaskList} taskList = {taskList} setRanOnce = {setRanOnce} ranOnce = {ranOnce} />} />
   </Routes>
 }

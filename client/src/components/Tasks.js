@@ -15,6 +15,7 @@ export default function Tasks(props) {
         }
         getAllTasks()
         props.setRefreshTasks(false)
+        props.setRanOnce(true)
     }, [props.refreshTasks])
 
     return <div>
