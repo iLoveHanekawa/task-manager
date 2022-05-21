@@ -14,6 +14,6 @@ export default function Home(props) {
         }
     }>
         <Form setRefreshTasks = {props.setRefreshTasks} />
-        <Tasks setTaskList = {props.setTaskList} taskList = {props.taskList} />
+        <Tasks setTaskList = {props.setTaskList} taskList = {props.taskList} setRefreshTasks = {props.setRefreshTasks} />
     </div>
 }

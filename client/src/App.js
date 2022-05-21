@@ -23,6 +23,6 @@ export default function App() {
 
   return <Routes>
     <Route path = '/' element = {<Home setRefreshTasks = {setRefreshTasks} taskList = {taskList} setTaskList = {setTaskList} />} />
-    <Route path = '/:id' element = {ranOnce? <TaskDescription setTaskList = {setTaskList} taskList = {taskList} />: <h1>Loading</h1>} />
+    <Route path = '/:id' element = {ranOnce? <TaskDescription setRefreshTasks = {setRefreshTasks} setTaskList = {setTaskList} taskList = {taskList} />: <h1>Loading</h1>} />
   </Routes>
 }

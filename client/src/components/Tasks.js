@@ -2,6 +2,8 @@ import React from 'react'
 import { MdDelete } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
+import { FiCheckCircle } from 'react-icons/fi'
+import axios from 'axios'
 
 export default function Tasks(props) {
 
@@ -35,19 +37,32 @@ export default function Tasks(props) {
                         borderRadius: '0.5rem'
                     }
                 } key = {i._id}>
-                    <h4 style = {
-                        {
-                            marginLeft: '3.5rem'
-                        }
-                    }>{i.name}</h4>
+                    <div style = {{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginLeft: '1rem'
+                    }}>
+                        {i.success && <FiCheckCircle/>}
+                        <h4 style = {
+                            {
+                                marginLeft: '2rem'
+                            }
+                        }>{i.name}</h4>
+                    </div>
                     <div>
-                        <AiFillEdit onClick = {() => navigate(`/${index}`)} style = {
+                        <AiFillEdit onClick = {() => {
+                            navigate(`/${index}`)
+                        }} style = {
                             {
                                 fontSize: '1.2rem',
                                 marginRight: '2rem'
                             }
                         } />
-                        <MdDelete style = {
+                        <MdDelete onClick = {async () => {
+                            await axios.delete(`api/v1/tasks/${i._id}`)
+                            props.setRefreshTasks(true)
+                        }} style = {
                             {
                                 fontSize: '1.2rem',
                                 marginRight: '2rem'
