@@ -18,12 +18,11 @@ export default function Form(props) {
         }
     }>
         <h2>Task Manager</h2>
-        <form onSubmit = {(e) => {
+        <form onSubmit = {async (e) => {
             e.preventDefault()
-            console.log(e.target[0].value)
-            axios.post('api/v1/tasks/', {
+            await axios.post('api/v1/tasks/', {
                 name: e.target[0].value,
-                success: true
+                success: false
             })
             props.setRefreshTasks(true)
             setInputText('')

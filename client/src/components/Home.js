@@ -3,7 +3,6 @@ import Tasks from './Tasks'
 import Form from './Form'
 
 export default function Home(props) {
-    const [refreshTasks, setRefreshTasks] = React.useState(false)
     return <div style = {
         {
             display: 'flex',
@@ -14,7 +13,7 @@ export default function Home(props) {
             gap: '5rem'
         }
     }>
-        <Form setRefreshTasks = {setRefreshTasks} />
-        <Tasks setRanOnce = {props.setRanOnce} setTaskList = {props.setTaskList} taskList = {props.taskList} refreshTasks = {refreshTasks} setRefreshTasks = {setRefreshTasks} />
+        <Form setRefreshTasks = {props.setRefreshTasks} />
+        <Tasks setTaskList = {props.setTaskList} taskList = {props.taskList} />
     </div>
 }

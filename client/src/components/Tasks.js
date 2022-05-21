@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { MdDelete } from 'react-icons/md'
 import { AiFillEdit } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom'
@@ -7,16 +6,6 @@ import { useNavigate } from 'react-router-dom'
 export default function Tasks(props) {
 
     const navigate = useNavigate()
-
-    React.useEffect(() => {
-        const getAllTasks = async () => {
-            const { data } = await axios.get('api/v1/tasks/')
-            props.setTaskList(data.tasks)
-        }
-        getAllTasks()
-        props.setRefreshTasks(false)
-        props.setRanOnce(true)
-    }, [props.refreshTasks])
 
     return <div>
         <ul style = {
