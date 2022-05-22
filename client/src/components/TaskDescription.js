@@ -19,7 +19,23 @@ export default function TaskDescription(props) {
     }
 
     return <div>
-        {props.taskList.length === 0? <h1>No Items</h1>: <div style = {
+        {props.taskList.length === 0? <h1>No Items</h1>: id > props.taskList.length? <div style = {{
+            display: 'flex',
+            height: '100vh',
+            width: '100vw',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column'
+        }}>
+            <h1>No such task</h1>
+            <button onClick = {() => navigate('/')} style = {{
+                height: '3rem',
+                width: '19rem',
+                color: 'white',
+                backgroundColor: 'black',
+                borderRadius: '0.4rem'
+            }}><h4>Back To Tasks</h4></button>
+            </div>: <div style = {
             {
                 height: '100vh',
                 width: '100vw',
@@ -45,7 +61,7 @@ export default function TaskDescription(props) {
                 <br></br>
                 <div style = {someStyle}>
                     <h4 style = {{width: '5rem'}}>Task ID:</h4>
-                    <h4>{props.taskList[id]._id}</h4>
+                    <h4>{props.taskList[id - 1]._id}</h4>
                 </div>
                 <div style = {someStyle}>
                     <h4 style = {{width: '5rem'}}>Name:</h4>
@@ -54,7 +70,7 @@ export default function TaskDescription(props) {
                         borderRadius: '0.2rem',
                         padding: '0 1rem',
                         width: '15rem'
-                    }}>{props.taskList[id].name}</h4>
+                    }}>{props.taskList[id - 1].name}</h4>
                 </div>
                 <form onSubmit = {async (e) => {
                     e.preventDefault()
@@ -62,9 +78,9 @@ export default function TaskDescription(props) {
                 }}>    
                     <label htmlFor = 'check'><h4 style = {{display: 'inline'}}>Completed</h4></label>
                     <input onChange = {async (e) => {
-                        await axios.patch(`api/v1/tasks/${props.taskList[id]._id}`, {success: e.target.checked})
+                        await axios.patch(`api/v1/tasks/${props.taskList[id - 1]._id}`, {success: e.target.checked})
                         props.setRefreshTasks(true)
-                    }} style = {{marginLeft: '7.9rem'}} type = 'checkbox' checked = {props.taskList[id].success} id = 'check' />
+                    }} style = {{marginLeft: '7.9rem'}} type = 'checkbox' checked = {props.taskList[id - 1].success} id = 'check' />
                     <br/>
                     <br/>
                     <button style = {{

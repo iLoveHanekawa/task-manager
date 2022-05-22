@@ -52,7 +52,7 @@ export default function Tasks(props) {
                     </div>
                     <div>
                         <AiFillEdit onClick = {() => {
-                            navigate(`/${index}`)
+                            navigate(`/${index + 1}`)
                         }} style = {
                             {
                                 fontSize: '1.2rem',
